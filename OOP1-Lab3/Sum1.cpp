@@ -4,7 +4,7 @@
 
 #include <iostream>
 using namespace std;
-int main5() {
+int main() {
 	int n;
 	float sum = 0;
 	cout << "Enter the value of n: ";

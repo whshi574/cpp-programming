@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-int main4()
+int main()
 {
 	int year;
 	cout << "Enter a Year: ";
