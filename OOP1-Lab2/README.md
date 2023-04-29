@@ -61,9 +61,19 @@
 
    Stod can accept "12" it into 12.
 
+   **Cin >>**
+
+   The << like a flow, cin >>a means input flow into a, cout<<a means a flow into the cout to output.
+
 3. ## Program to find greatest in 3 numbers.
 
-   
+   **Vector<>**
+
+   To get a dynamic array of specific type.
+
+   **Auto**
+
+   The corresponding type can be obtained by calculating the expression.
 
 4. ## Program to find that entered year is leap year or not.
 
