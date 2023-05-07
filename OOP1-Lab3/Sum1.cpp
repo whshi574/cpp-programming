@@ -4,14 +4,28 @@
 
 #include <iostream>
 using namespace std;
+
+int SumFromMtoN() {
+
+	cout << "Please enter two number, we will sum them from small to big." << endl;
+
+	int a, b, sum=0;
+	cin >> a >> b;
+	if (a = b) {
+		return a;
+	}
+
+	if (a > b) {
+		while (!(a = b)) {
+			sum = sum + b;
+			b++;
+		}
+	}
+
+}
+
 int main() {
-	int n;
-	float sum = 0;
-	cout << "Enter the value of n: ";
-	cin >> n;
-	for (int i = 1;i <= n;i++)
-		sum += 1 / i;
-	cout << "Sum is : " << sum << endl;
-	system("pause");
+	
+
 	return 0;
 }

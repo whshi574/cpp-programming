@@ -21,25 +21,32 @@ void SwapWithoutVarInFloat() {
 
 void SwapWithoutVarInRandom() {
 
-    std::string str = "123";
-    try {
-        double d = std::stod(str);
-        std::cout << "The string is a floating-point number." <<d<< std::endl;
-    }
-    catch (const std::exception& e) {
-        try {
-            int i = std::stoi(str);
-            if (str.find('.') == std::string::npos) {
-                std::cout << "The string is an integer." << std::endl;
-            }
-            else {
-                std::cout << "The string is not a number." << std::endl;
-            }
-        }
-        catch (const std::exception& e) {
-            std::cout << "The string is not a number." << std::endl;
-        }
-    }
+	string a, b;
+	int I_a;
+	int I_b;
+	double S_a;
+	double S_b;
+
+	string c = "12.23";
+	//cin >> a >> b;
+
+	try {
+
+		I_a = stoi(c);
+
+	}
+	catch(invalid_argument& ia) {
+
+		cout << "invalid_argument" << endl;
+		
+	}
+	catch (const out_of_range& oor) {
+
+		cout << "out_of_range" << endl;
+		
+	}
+
+	cout << I_a << endl;
 }
 
 int main()
