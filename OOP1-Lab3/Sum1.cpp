@@ -5,26 +5,42 @@
 #include <iostream>
 using namespace std;
 
-int SumFromMtoN() {
+void SumFromMtoN() {
 
 	cout << "Please enter two number, we will sum them from small to big." << endl;
 
 	int a, b, sum=0;
 	cin >> a >> b;
-	if (a = b) {
-		return a;
+	if (a == b) {
+		sum = a;
+		cout << sum << endl;
+		return;
 	}
 
 	if (a > b) {
-		while (!(a = b)) {
+		while (!(a == b)) {
 			sum = sum + b;
 			b++;
 		}
+		sum = sum + a;
 	}
+	else {
+		while (!(a == b)) {
+			sum = sum + a;
+			a++;
+		}
+		sum = sum + b;
+	}
+
+	cout << sum << endl;
 
 }
 
 int main() {
+	
+	while (1) {
+		SumFromMtoN();
+	}
 	
 
 	return 0;
