@@ -17,6 +17,22 @@
 3. Program to input a number and then calculate sum of its digits.
     - Hint: let number = 562. Then you should print 5 + 6 + 2 = 13.
     
+    **#include<cctype> isdigit()**
+    
+    The functions determine whether the character is an integer.
+    
+    **Using mod to get a last number of a integer**
+    
+    sum = sum + a % 10;
+    
+    a = a / 10;
+    
+    **static_cast**
+    
+    int num = static_cast<int>(c - '0');
+    
+    The function will cast character c to a ASCII value like 5 is "53".
+    
 4. Program to find whether given number is a prime number or not.
 
 5. Program to display sum of series 1 + 1/2 + 1/3 + ... + 1/n.
