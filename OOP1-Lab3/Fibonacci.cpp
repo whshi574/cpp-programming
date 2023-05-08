@@ -5,19 +5,38 @@
 
 #include <iostream>
 using namespace std;
-int main() {
-	int a = 0, b = 1, sum = 0;
-	cout << a << endl;
-	cout << b << endl;
-	while (b < 100) {
-		sum = a + b;
-		a = b;
-		b = sum;
-		if (b > 100) {
+
+void FibonacciTo100() {
+	int i = 1;
+	int FibSum = 0;
+	int FibPrev, FibPrevPrev;
+
+	while (!(FibSum>100)) {
+
+		if ((i == 1)||(i == 2)) {
+			FibSum = 1;
+			FibPrev = 1;
+			FibPrevPrev = 1;
+
+			
+		}
+		else {
+			FibSum = FibPrev + FibPrevPrev;
+		}
+
+		if (FibSum > 100) {
 			break;
 		}
-		cout << sum << endl;
+
+		cout << "Now Fibonacci Number is"<< FibSum << endl;
+
+		FibPrevPrev = FibPrev;
+		FibPrev = FibSum;
+		i++;
 	}
-	system("pause");
+}
+int main() {
+	FibonacciTo100();
+	
 	return 0;
 }

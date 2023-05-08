@@ -10,6 +10,10 @@
 2. Program to print Fibonacci series up to 100. 
     - Hint: Fibonacci Series is 1, 1, 2, 3, 5, 8, 13, 21, ....
     
+    **Integer Overflow:**
+    
+    If two number too large, the sum of them maybe to a negative number. It means the result affects the symbolic representation of the first bit. 
+    
 3. Program to input a number and then calculate sum of its digits.
     - Hint: let number = 562. Then you should print 5 + 6 + 2 = 13.
     
