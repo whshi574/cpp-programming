@@ -4,34 +4,87 @@
 
 #include <iostream>
 using namespace std;
-int main8() {
+
+class Caculator {
+
+private:
+	double FirstNum;
+	double SecondNum;
 	char op;
-	float num1, num2;
-	cout << "Enter the 1st operand: ";
-	cin >> num1;
-	cout << "Enter operator either + or - or * or / : ";
-	cin >> op;
-	cout << "Enter 2nd operand: ";
-	cin >> num2;
-	cout << endl;
-	switch (op)
-	{
-	case '+':
-		cout << "Result is "<< num1 + num2 << endl;
-		break;
-	case '-':
-		cout << "Result is " << num1 - num2 << endl;
-		break;
-	case '*':
-		cout << "Result is " << num1 * num2 << endl;
-		break;
-	case '/':
-		cout << "Result is " << num1 / num2 << endl;
-		break;
-	default:
-		cout << "Error! Operator is not correct";
-		break;
+
+public:
+	void GetInput() {
+		cout << "Please enter two number which you want to caculator" << endl;
+		bool bFirstNumGetValueSuccess = 0;
+		bool bSecondNumGetValueSuccess = 0;
+
+		while (!(bFirstNumGetValueSuccess)) {
+			cout << "The First Num: " << endl;
+			if (!(cin >> FirstNum)) {
+				cout << "You input is not correct, Please enter a number again" << endl;
+				cin.clear();
+				cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				bFirstNumGetValueSuccess = 0;
+				continue;
+			}
+			cout << "OK, we get your First Num: " << FirstNum<<endl;
+			bFirstNumGetValueSuccess = 1;
+		}
+
+		while (!(bSecondNumGetValueSuccess)) {
+			cout << "The Second Num: " << endl;
+			if (!(cin >> SecondNum)) {
+				cout << "You input is not correct, Please enter a number again" << endl;
+				cin.clear();
+				cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				bSecondNumGetValueSuccess = 0;
+				continue;
+			}
+			cout << "OK, we get your First Num: " << SecondNum << endl;
+			bSecondNumGetValueSuccess = 1;
+		}
+
+		return;
 	}
-	system("pause");
+
+	void GetOperator() {
+		cout << "Please enter the operator which you want" << endl;
+		cout << "+	-	*	%" << endl;
+		
+		cin >> op;
+
+		switch (op) {
+		case '+':
+			cout << "Perform the add operation" << endl;
+			cout << "The result is " << FirstNum + SecondNum << endl;
+			break;
+		case '-':
+			cout << "Perform the sub operation" << endl;
+			cout << "The result is " << FirstNum - SecondNum << endl;
+			break;
+		case '*':
+			cout << "Perform the multipy operation" << endl;
+			cout << "The result is " << FirstNum * SecondNum << endl;
+			break;
+		case '%':
+			cout << "Perform the division operation" << endl;
+			cout << "The result is " << FirstNum/SecondNum << endl;
+			break;
+		default:
+			cout << "Please enter a right operator" << endl;
+			cin.clear();
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
+
+	}
+};
+int main() {
+	
+	Caculator inst;
+	inst.GetInput();
+	while (1) {
+		inst.GetOperator();
+	}
+	
 	return 0;
 }

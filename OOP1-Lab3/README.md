@@ -90,3 +90,5 @@
     ```
 
 8. Program to display arithmetic operator using switch case
+
+    When we use cin to get input from keyboard, we will get input by type. Like cin>>char op, if we enter asasdad, we will get a first and leave the sasdad to the next cin.
