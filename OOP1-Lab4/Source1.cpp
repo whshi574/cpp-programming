@@ -4,19 +4,30 @@
 
 #include <iostream>
 using namespace std;
-int main2()
-{
-	for (int i = 1; i <= 5; i++)
-	{
-		for (int j = 5; j >= 1; j--)
-		{
-			if (i >= j)
-				cout << "*";
-			else
+
+void PrintStar() {
+	cout << "You want to print n stars? please enter n number" << endl;
+	int IntInput;
+	cin >> IntInput;
+	for (int i = 1; i <= IntInput; i++) {
+		for (int j = 1; j <= IntInput; j++) {
+			if (j <= (IntInput - i)) {
 				cout << " ";
+			}
+			else {
+				cout << "*";
+			}
 		}
 		cout << endl;
 	}
-	system("pause");
+}
+
+int main()
+{
+	
+	while (1)
+	{
+		PrintStar();
+	}
 	return 0;
 }

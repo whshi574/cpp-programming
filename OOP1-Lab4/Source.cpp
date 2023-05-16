@@ -4,16 +4,24 @@
 
 #include <iostream>
 using namespace std;
-int main()
-{
-	for (int i = 1; i <= 5; i++)
-	{
-		for (int j = 1; j <= i; j++)
-		{
+
+void PrintStar() {
+	cout << "You want to print n stars? please enter n number" << endl;
+	int IntInput;
+	cin >> IntInput;
+	for (int i = 1; i <= IntInput; i++) {
+		for (int j = 1; j <= i; j++) {
 			cout << "*";
 		}
 		cout << endl;
 	}
-	system("pause");
+}
+
+int main()
+{
+	while (1)
+	{
+		PrintStar();
+	}
 	return 0;
 }

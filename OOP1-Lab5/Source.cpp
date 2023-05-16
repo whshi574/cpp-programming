@@ -3,27 +3,25 @@
 // Program to calculate area of a circle using functions
 
 #include <iostream>
-#include <math.h> //C++ libriry which is including "pow" and PI=3.14
+#include <cmath>
 using namespace std;
 
-float area(float radius)
-{ // function for calculating the area
-	float area;
-	area = (atan(1) * 4) * (pow(radius, 2)); //"atan" is the function which is finding the PI=3.14
-	return area;
-} // end function "area"
+const double PI = 3.14159265358979323846;
 
-int main1()
+void CalculateCircleArea() {
+	cout << "Please give me a number to represent the R length of circle" << endl;
+	double InputR;
+	cin >> InputR;
+	double CircleArea = InputR * InputR * PI;
+	cout << "The Circle Area is " << CircleArea << endl;
+	return;
+}
+
+int main()
 {
-	float radius;
-	cout << "Please enter the radius of circle: ";
-	cin >> radius; // inputing the radius
-
-	if (radius > 0)
-		cout << area(radius) << endl; // calling the function "area" for calculating the Area of Circle
-
-	else
-		cout << "INVALID Radius!" << endl; // if radius is a negative number or equal to zero the program will show "Invalid radius"
-	system("pause");
+	while (1)
+	{
+		CalculateCircleArea();
+	}
 	return 0;
 }
