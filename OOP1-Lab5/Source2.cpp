@@ -5,23 +5,46 @@
 #include <iostream>
 using namespace std;
 
-double converting1(double hours, double minutes, double seconds)
-{													  // initializing the variables
-	return (hours * 60) + (minutes) + (seconds / 60); // returning the function "converting"
+bool GetMinutesFromTime(double hours, double minutes, double seconds) {
+
+	if (hours < 0) {
+		cout << "Your hours input is wrong" << endl;
+		return false;
+	}
+	if (minutes < 0) {
+		cout << "Your minutes input is wrong" << endl;
+		return false;
+	}
+	if (seconds < 0) {
+		cout << "Your seconds input is wrong" << endl;
+		return false;
+	}
+
+	double ResultMinute = minutes + (hours*60) + (seconds/60);
+	cout << "The result minute is " << ResultMinute<<endl;
+
+	return true;
 }
 
-int main3()
+int main()
 {
-	double hours, minutes, seconds;
-	cout << "Hours: ";
-	cin >> hours;		 // Prompting user for data and
-	cout << "Minutes: "; // reading 3 numbers for user
-	cin >> minutes;		 //!
-	cout << "Seconds: ";
-	cin >> seconds;
-	if (hours >= 0 && minutes >= 0 && seconds >= 0) // the program will be executed when all numbers are positive
-		cout << "The time in minutes is " << converting1(hours, minutes, seconds) << endl;
-	else // calling function to calculate the main function
-		cout << "Invalid inputs!" << endl;
+	double InputHours, InputMinutes, InputSeconds;
+	bool bIsGetSuccess = 0;
+
+	do {
+
+		if (!(cin >> InputHours >> InputMinutes >> InputSeconds)) {
+			// Input error occurred
+			cin.clear(); // Clear the error state
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the input buffer
+			cout << "Please enter again , you enter the wrong value" << endl;
+			continue;
+		}
+
+		bIsGetSuccess = GetMinutesFromTime(InputHours, InputMinutes, InputSeconds);
+		
+
+	} while (!bIsGetSuccess);
+
 	return 0; // indicates that the program will ended successfully
 }
