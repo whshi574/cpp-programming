@@ -3,22 +3,27 @@
 
 using namespace std;
 
-long long int power(long long int x, long long int y)
+double GetPower(double BaseNum, int PowerNum) 
 {
-	if (y == 0)
+	if (PowerNum == 0)
+	{
 		return 1;
+	} 
 	else
-		return x * power(x, y - 1);
+	{
+		PowerNum = PowerNum - 1;
+		return BaseNum * GetPower(BaseNum, PowerNum);
+	}
 }
 
-int main1()
+int main()
 {
-	cout << "\t\t\t***Program to calculate the x^y using recursion***" << endl;
-	int x, y;
-	cout << "Please enter the numbers x^y: ";
-	cin >> x >> y;					   // inpuing the interval of the numbers
-	cout << "Result: " << power(x, y); // calling function 'power'
-	cout << endl;
-	system("pause");
+	double FirstInput;
+	int SecondInput;
+
+	cin >> FirstInput >> SecondInput;
+
+	cout << "The Result is " << GetPower(FirstInput, SecondInput) << endl;
+
 	return 0;
 }

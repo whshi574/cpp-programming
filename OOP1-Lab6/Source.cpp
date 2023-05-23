@@ -143,8 +143,6 @@ double FindLargestNum(double FirstNum, double SecondNum, double ThirdNum)
 
 }
 
-
-
 void CalcuAreaPage() {
 
 #ifdef _WIN32
