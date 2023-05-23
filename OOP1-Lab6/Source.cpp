@@ -2,481 +2,480 @@
 #include <math.h>
 #include <cstdlib>
 #include <conio.h>
-using namespace std;
+#include <corecrt_math_defines.h>
 
-void first()
+bool CalcuArea(double CircleRadius) 
 {
-	// when the case 1 in the main menu
-	for (int l = 0; l < 120; l++)
-	{
-		cout << "=";
+	if (CircleRadius <= 0) {
+		std::cout<<"Please enter a correct input"<<std::endl;
+		return 0;
 	}
-	cout << endl;
-	cout << "\t\t\t\t***Area of Geometrical figures.***\n";
-	for (int l = 0; l < 120; l++)
-	{
-		cout << "=";
+
+	double Area = M_PI * std::pow(CircleRadius, 2);
+	std::cout << "The area of Circle is " << Area << std::endl;
+	return 1;
+}
+
+bool CalcuSquareArea(double SquareLength)
+{
+	if (SquareLength <= 0) {
+		std::cout << "Please enter a correct input" << std::endl;
+		return 0;
 	}
-	cout << endl;
-	cout << " [1] Circle" << endl;
-	cout << " [2] Rectangle" << endl;
-	cout << " [3] Triangle" << endl;
-	cout << " [4] Square" << endl;
-	cout << " [5] EXIT to MAIN MENU" << endl;
-	cout << endl;
+
+	double Area = std::pow(SquareLength, 2);
+	std::cout << "The area of Square is " << Area << std::endl;
+	return 1;
 }
 
-void second()
+bool CalcuArea(double RectLength, double RectWidth)
 {
-	// when the case 2 in the main menu
-	for (int l = 0; l < 120; l++)
-	{
-		cout << "=";
+	if ((RectLength <= 0) && (RectWidth <= 0)) {
+		std::cout << "Please enter a correct input" << std::endl;
+		return 0;
 	}
-	cout << endl;
-	cout << "\t\t\t\t***Circumference of Geometrical figures.***\n";
-	for (int l = 0; l < 120; l++)
-	{
-		cout << "=";
+
+	double Area = RectLength * RectWidth;
+	std::cout << "The area of Rectangle is " << Area << std::endl;
+	return 1;
+
+
+}
+
+bool CalcuArea(double TriA, double TriB, double TriC)
+{
+	bool bIsTriangle = ((TriA + TriB) > TriC) && ((TriA + TriC) > TriB) && ((TriC + TriB) > TriA);
+	bIsTriangle = bIsTriangle && (TriA > 0) && (TriB > 0) && (TriC > 0);
+
+	if (!bIsTriangle) {
+
+		std::cout << "The wrong input, it is not a triangle " <<std::endl;
+		return 0;
 	}
-	cout << endl;
-	cout << " [1] Circle" << endl;
-	cout << " [2] Rectangle" << endl;
-	cout << " [3] Triangle" << endl;
-	cout << " [4] Square" << endl;
-	cout << " [5] EXIT to MAIN MENU" << endl;
-	cout << endl;
+	double s = (TriA + TriB + TriC) / 2.0;
+
+	double Area = std::sqrt(s * (s - TriA) * (s - TriB) * (s - TriC));
+
+	std::cout << "The area of Triangle is " << Area << std::endl;
+
+	return 1;
 }
 
-void third()
+bool CalcuCirfer(double CircleRadius)
 {
-	// when the case 3 in the main menu
-	for (int l = 0; l < 120; l++)
-	{
-		cout << "=";
+	if (CircleRadius <= 0) {
+		std::cout << "Please enter a correct input" << std::endl;
+		return 0;
 	}
-	cout << endl;
-	cout << "\t\t\t\t***Find the Largest number among 3 numbers.***\n";
-	for (int l = 0; l < 120; l++)
-	{
-		cout << "=";
+
+	double Cirfer = M_PI * 2 * CircleRadius;
+	std::cout << "The Circumference of Circle is " << Cirfer << std::endl;
+	return 1;
+}
+
+bool CalcuSquareCirfer(double SquareLength)
+{
+	if (SquareLength <= 0) {
+		std::cout << "Please enter a correct input" << std::endl;
+		return 0;
 	}
-	cout << endl;
+
+	double Cirfer = SquareLength*4;
+	std::cout << "The Circumference of Square is " << Cirfer << std::endl;
+	return 1;
 }
 
-/////Overloading functions for the Finding AREA/////
-double area(double radius)
-{ // overloading function for finding the area of circle
-	double area1;
-	double input_radius;
-	area1 = 3.141592653589793238463 * pow(radius, 2);
-	cout << "The area of Circle: " << area1 << endl;
-	cout << endl;
-	return area1;
-}
-
-double area(double sideA, double sideB)
-{ // overloading function for finding the area of rectengle
-	double area2;
-	area2 = sideA * sideB;
-	cout << "The area of Rectangle: " << area2 << endl;
-	cout << endl;
-	return area2;
-}
-
-double area(double sidetriangleA, double sidetriangleB, double sidetriangleC)
-{ // overloading function for finding the area of triangle
-	double area3, S;
-	S = (sidetriangleA + sidetriangleB + sidetriangleC) / 2;
-	area3 = sqrt(S * (S - sidetriangleA) * (S - sidetriangleB) * (S - sidetriangleC));
-	cout << "The area of triangle: " << area3 << endl;
-	cout << endl;
-	return area3;
-}
-
-float area(float sidesquare) ////overloading function for finding the area of square
+bool CalcuCirfer(double RectLength, double RectWidth)
 {
-	float area4;
-	area4 = pow(sidesquare, 2);
-	cout << "The area of square: " << area4 << endl;
-	cout << endl;
-	return area4;
+	if ((RectLength <= 0) && (RectWidth <= 0)) {
+		std::cout << "Please enter a correct input" << std::endl;
+		return 0;
+	}
+
+	double Cirfer = (RectLength + RectWidth)*2;
+	std::cout << "The Circumference of Rectangle is " << Cirfer << std::endl;
+	return 1;
+
 }
 
-//////Overloading functions for finding CIRCUMFERENCE///////
-double circumference(double radius)
+bool CalcuCirfer(double TriA, double TriB, double TriC)
 {
-	double circumference1;
-	double input_radius;
-	circumference1 = 2 * 3.141592653589793238463 * radius;
-	cout << "The circumference of Circle: " << circumference1 << endl;
-	cout << endl;
-	return circumference1;
+	bool bIsTriangle = ((TriA + TriB) > TriC) && ((TriA + TriC) > TriB) && ((TriC + TriB) > TriA);
+	bIsTriangle = bIsTriangle && (TriA > 0) && (TriB > 0) && (TriC > 0);
+
+	if (!bIsTriangle) {
+
+		std::cout << "The wrong input, it is not a triangle " << std::endl;
+		return 0;
+	}
+	
+
+	double Cirfer = TriA+ TriB+ TriC;
+
+	std::cout << "The Cirfer of Triangle is " << Cirfer << std::endl;
+
+	return 1;
 }
 
-double circumference(double sideA, double sideB)
-{
-	double circumference2;
-	circumference2 = 2 * (sideA + sideB);
-	cout << "The circumference of Rectangle: " << circumference2 << endl;
-	cout << endl;
-	return circumference2;
-}
-
-double circumference(double sidetriangleA, double sidetriangleB, double sidetriangleC)
-{
-	double circumference3;
-	circumference3 = sidetriangleA + sidetriangleB + sidetriangleC;
-	cout << "The circumference of triangle: " << circumference3 << endl;
-	cout << endl;
-	return circumference3;
-}
-
-float circumference(float sidesquare)
-{
-	float circumference4;
-	circumference4 = 4 * sidesquare;
-	cout << "The circumference of square: " << circumference4 << endl;
-	cout << endl;
-	return circumference4;
-}
-
-// Overloading function for inputing 3 in the main menu
-int findlargest(int n1, int n2, int n3)
+double FindLargestNum(double FirstNum, double SecondNum, double ThirdNum) 
 {
 
-	if (n1 >= n2 && n1 >= n3)
+	double LargestNum;
+
+	if (FirstNum >= SecondNum) 
 	{
-		cout << "Largest number: " << n1 << endl;
+		LargestNum = FirstNum;
 	}
-	if (n2 >= n1 && n2 >= n3)
+	else
 	{
-		cout << "Largest number: " << n2 << endl;
-	}
-	if (n3 >= n1 && n3 >= n2)
-	{
-		cout << "Largest number: " << n3 << endl;
+		LargestNum = SecondNum;
 	}
 
-	return n1, n2, n3;
+	if (LargestNum>= ThirdNum)
+	{
+		return LargestNum;
+	} 
+	else
+	{
+		LargestNum = ThirdNum;
+		return LargestNum;
+	}
+
 }
 
-double findlargest(double n1, double n2, double n3)
+
+
+void CalcuAreaPage() {
+
+#ifdef _WIN32
+	system("cls");
+#else
+	system("clear");
+#endif
+	std::cout << "========Calculate area of figures========" << std::endl;
+	std::cout << "This function have the following figures" << std::endl;
+	std::cout << "[1] Circle" << std::endl;
+	std::cout << "[2] Rectangle" << std::endl;
+	std::cout << "[3] Triangle" << std::endl;
+	std::cout << "[4] Square" << std::endl;
+	std::cout << "Please enter the number what you want to Calculate area of figure" << std::endl;
+
+	int InputIndex;
+
+	bool bIsGetInput = 0;
+	bool bIsGetArea = 0;
+
+	double InputCircleRadius;
+
+	double SquareLength;
+	double RectLength;
+	double RectWidth;
+
+	double TriA;
+	double TriB;
+	double TriC;
+
+	do 
 {
+	std::cin >> InputIndex;
+	
+		switch (InputIndex)
+		{
+		case 1:
+			do 
+			{
+				std::cout << "Please enter the CircleRadius" << std::endl;
+				std::cin >> InputCircleRadius;
 
-	if (n1 >= n2 && n1 >= n3)
-	{
-		cout << "Largest number: " << n1 << endl;
-	}
-	if (n2 >= n1 && n2 >= n3)
-	{
-		cout << "Largest number: " << n2 << endl;
-	}
-	if (n3 >= n1 && n3 >= n2)
-	{
-		cout << "Largest number: " << n3 << endl;
-	}
-	else if (n1 == n2 == n3)
-		cout << "Largest number : " << n3 << endl;
-	return n1, n2, n3;
+				bIsGetArea = CalcuArea(InputCircleRadius);
+
+			} while (!bIsGetArea);
+
+			break;
+		case 2:
+			do
+			{
+				std::cout << "Please enter the RectLength and RectWidth" << std::endl;
+
+				std::cin >> RectLength;
+				std::cin >> RectWidth;
+
+				bIsGetArea = CalcuArea(RectLength, RectWidth);
+
+			} while (!bIsGetArea);
+
+			break;
+		case 3:
+			do
+			{
+				std::cout << "Please enter the three Triangle Length" << std::endl;
+
+				std::cin >> TriA>> TriB>> TriC;
+
+				bIsGetArea = CalcuArea(TriA, TriB, TriC);
+
+			} while (!bIsGetArea);
+
+			break;
+		case 4:
+			do 
+			{
+				std::cout << "Please enter the Square Length" << std::endl;
+
+				std::cin >> SquareLength;
+
+				bIsGetArea = CalcuSquareArea(SquareLength);
+				
+			} while (!bIsGetArea);
+
+			break;
+		default:
+			std::cout << "Please enter again, you enter a wrong input" << std::endl;
+			bIsGetInput = 0;
+			break;
+		}
+} while (bIsGetInput);
+
 }
 
-// overloading function with templates
-template <class T>
-T Large(T n1, T n2, T n3)
+void CalcuCircumferencePage() 
 {
-	if (n1 >= n2 && n1 >= n3)
-	{
-		cout << "Largest number: " << n1 << endl;
-	}
-	if (n2 >= n1 && n2 >= n3)
-	{
-		cout << "Largest number: " << n2 << endl;
-	}
-	if (n3 >= n1 && n3 >= n2)
-	{
-		cout << "Largest number: " << n3 << endl;
-	}
-	else if (n1 == n2 == n3)
-		cout << "Largest number : " << n3 << endl;
+#ifdef _WIN32
+	system("cls");
+#else
+	system("clear");
+#endif
+	std::cout << "========Calculate Circumference of figures========" << std::endl;
+	std::cout << "This function have the following figures" << std::endl;
+	std::cout << "[1] Circle" << std::endl;
+	std::cout << "[2] Rectangle" << std::endl;
+	std::cout << "[3] Triangle" << std::endl;
+	std::cout << "[4] Square" << std::endl;
+	std::cout << "Please enter the number what you want to Calculate Circumference of figure" << std::endl;
 
-	return n1, n2, n3;
+	int InputIndex;
+
+	bool bIsGetInput = 1;
+	bool bIsGetCirfer = 1;
+
+	double CircleRadius;
+
+	double RectangleLength;
+	double RectangleWidth;
+
+	double TriA, TriB, TriC;
+
+	double SquareLength;
+
+
+	do 
+	{
+		std::cin >> InputIndex;
+
+		switch (InputIndex)
+		{
+		case 1:
+			while (bIsGetCirfer)
+			{
+				std::cin >> CircleRadius;
+
+				if (std::cin.fail())
+				{
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					//std::cout << "Please enter a correct input" << std::endl;
+					continue;
+				}
+
+				bIsGetCirfer = CalcuCirfer(CircleRadius);
+
+				if (!bIsGetCirfer)
+				{
+					std::cout << "Please enter a correct input" << std::endl;
+					bIsGetCirfer = 1;
+					continue;
+				}
+
+				bIsGetCirfer = 0;
+			}
+
+			bIsGetInput = 1;
+			break;
+		case 2:
+			while (bIsGetCirfer)
+			{
+				std::cin >> RectangleLength >> RectangleWidth;
+
+				if (std::cin.fail())
+				{
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					//std::cout << "Please enter a correct input" << std::endl;
+					continue;
+				}
+
+				bIsGetCirfer = CalcuCirfer(RectangleLength, RectangleWidth);
+
+				if (!bIsGetCirfer)
+				{
+					std::cout << "Please enter a correct input" << std::endl;
+					bIsGetCirfer = 1;
+					continue;
+				}
+
+				bIsGetCirfer = 0;
+			}
+
+			bIsGetInput = 1;
+			break;
+		case 3:
+			while (bIsGetCirfer)
+			{
+				std::cin >> TriA >> TriB >> TriC;
+
+				if (std::cin.fail())
+				{
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					std::cout << "Please enter a correct input" << std::endl;
+					continue;
+				}
+
+				bIsGetCirfer = CalcuCirfer(TriA, TriB, TriC);
+
+				if (!bIsGetCirfer)
+				{
+					//std::cout << "Please enter a correct input" << std::endl;
+					bIsGetCirfer = 1;
+					continue;
+				}
+
+				bIsGetCirfer = 0;
+			}
+
+			bIsGetInput = 1;
+			break;
+		case 4:
+			while (bIsGetCirfer)
+			{
+				std::cin >> SquareLength;
+
+				if (std::cin.fail())
+				{
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					std::cout << "Please enter a correct input" << std::endl;
+					continue;
+				}
+
+				bIsGetCirfer = CalcuSquareCirfer(SquareLength);
+
+				if (!bIsGetCirfer)
+				{
+					//std::cout << "Please enter a correct input" << std::endl;
+					bIsGetCirfer = 1;
+					continue;
+				}
+
+				bIsGetCirfer = 0;
+			}
+
+			bIsGetInput = 1;
+			break;
+		default:
+			std::cout << "Please enter a correct index input" << std::endl;
+			bIsGetInput = 0;
+			break;
+		}
+	} while (!bIsGetInput);
 }
+
+void FindLargestNumPage() {
+#ifdef _WIN32
+	system("cls");
+#else
+	system("clear");
+#endif
+	std::cout << "========Get the largest number from three number========" << std::endl;
+	std::cout << "Please enter three number" << std::endl;
+
+	bool bIsGetNum = 0;
+	
+	double FirstNum;
+	double SecondNum;
+	double ThirdNum;
+
+	double LargestNum;
+
+	while (!bIsGetNum) {
+
+		std::cin >> FirstNum >> SecondNum >> ThirdNum;
+
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			//std::cout << "Please enter a correct input" << std::endl;
+			bIsGetNum = 0;
+			continue;
+		}
+
+		LargestNum = FindLargestNum(FirstNum, SecondNum, ThirdNum);
+
+		std::cout << "The largest number is " << LargestNum<<std::endl;
+
+		bIsGetNum = 1;
+	}
+
+}
+
+void MainPage() {
+
+	std::cout << "========Welcome to the figure calculate system========" << std::endl;
+	std::cout << "This system have the following functions" << std::endl;
+	std::cout << "[1] Calculate area of figures" << std::endl;
+	std::cout << "[2] Calculate circumference of figures" << std::endl;
+	std::cout << "[3] Find largest number" << std::endl;
+	std::cout << "Please enter the number what you want to use the function" << std::endl;
+
+	int InputIndex;
+	bool bIsGetInput = 0;
+
+	do 
+	{
+		std::cin >> InputIndex;
+
+		switch (InputIndex)
+		{
+		case 1:
+			CalcuAreaPage();
+			bIsGetInput = 1;
+			break;
+		case 2:
+			CalcuCircumferencePage();
+			bIsGetInput = 1;
+			break;
+		case 3:
+			FindLargestNumPage();
+			bIsGetInput = 1;
+			break;
+		default:
+			std::cout << "Please enter again, you enter a wrong input" << std::endl;
+			bIsGetInput = 0;
+			break;
+		}
+	} while (!bIsGetInput);
+	
+
+}
+
 
 /////////////////////////////////////***STARTING POINT***////////////////////////////////////////////////////
 int main()
 {
-	system("color 3E");
-	int numberforoperation = 0;
-	double radius1;
-	double sideA, sideB;
-	double sidetriangleA, sidetriangleB, sidetriangleC;
-	float sidesquare;
-	double n1, n2, n3;
 
-	for (int l = 0; l < 120; l++)
-	{
-		cout << "=";
-	}
-	cout << endl;
-	cout << "\t\t\t\t\tHello! Welcome to the main menu.\n";
-	cout << "\t\t   WARNING!!! Enter only numbers!!! And the 'y/n' when you will be asked!\n";
-	for (int l = 0; l < 120; l++)
-	{
-		cout << "=";
-	}
-	cout << endl;
-	cout << "\t[1] Area of Geometrical Figures.\n";
-	cout << "\t[2] Circumference of geometrical figures.\n";
-	cout << "\t[3] Find the largest number.\n";
-	cout << "\t[4] finding the largest number with function template.\n";
-	cout << "\t[5] EXIT\n";
-	cout << endl;
-b:
-	cout << " Please enter the number of operation you would like to execute:  ";
-	cin >> numberforoperation;
-	if (numberforoperation > 0 && numberforoperation < 6)
-	{
-		system("cls");
-		switch (numberforoperation)
-		{
-		case 1: // first11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-			first();
-			int firstfirst;
-		f:
-			cout << " Choose one figure: ";
-			cin >> firstfirst;
-			if (firstfirst > 0 && firstfirst < 6)
-			{
-				system("cls");		// ends the main menu
-				switch (firstfirst) // firstfirst
-				{
-					system("cls"); // ends the main menu
-				case 1:
-					cout << "\t\t\t\t***CIRCLE***\n";
-				a:
-					cout << "Enter the radius of the circle: ";
-					cin >> radius1;
-					if (radius1 > 0)
-					{
-						area(radius1);
-						first();
-						goto f;
-					}
-					else
-						goto a;
-					break;
+	MainPage();
 
-				case 2:
-					cout << "\t\t\t\t***RECTANGLE***\n";
-				c:
-					cout << "Enter the height of rectangle: ";
-					cin >> sideA;
-					cout << "Enter the width of the rectangle: ";
-					cin >> sideB;
-					cout << endl;
-					if (sideA > 0 && sideB > 0)
-					{
-						area(sideA, sideB);
-
-						first();
-						goto f;
-					}
-					else
-						goto c;
-					break;
-				case 3:
-					cout << "\t\t\t\t***TRIANGLE***" << endl;
-				d:
-					cout << "Enter the first side of the triangle: ";
-					cin >> sidetriangleA;
-					cout << "Enter the second side of the triangle: ";
-					cin >> sidetriangleB;
-					cout << "Enter the third side of the triangle: ";
-					cin >> sidetriangleC;
-					cout << endl;
-					if (sidetriangleA > 0 && sidetriangleB > 0 && sidetriangleC > 0 && sidetriangleC < sidetriangleA + sidetriangleB && sidetriangleA < sidetriangleB + sidetriangleC && sidetriangleB < sidetriangleC + sidetriangleA)
-					{
-						area(sidetriangleA, sidetriangleB, sidetriangleC);
-
-						first();
-						goto f;
-					}
-					else
-						goto d;
-					break;
-				case 4:
-					cout << "\t\t\t\t***Square***" << endl;
-				e:
-					cout << "Enter the side of square: ";
-					cin >> sidesquare;
-					if (sidesquare > 0)
-					{
-						area(sidesquare);
-
-						first();
-						goto f;
-					}
-					else
-						goto e;
-					break;
-				case 5:
-				{
-					main();
-					break;
-				}
-				default:
-					break;
-				}
-				break;
-			}
-			else
-				goto f;
-			break;
-
-		case 2: // second2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
-			second();
-			int secondsecond;
-		g:
-			cout << " Choose one figure: ";
-			cin >> secondsecond;
-			if (secondsecond > 0 && secondsecond < 6)
-			{
-				system("cls");		  // ends the main menu
-				switch (secondsecond) // firstfirst
-				{
-					system("cls"); // ends the main menu
-				case 1:
-					cout << "\t\t\t\t***CIRCLE***\n";
-				h:
-					cout << "Enter the radius of the circle: ";
-					cin >> radius1;
-					if (radius1 > 0)
-					{
-						circumference(radius1);
-						second();
-						goto g;
-					}
-					else
-						goto h;
-					break;
-
-				case 2:
-					cout << "\t\t\t\t***RECTANGLE***\n";
-				j:
-					cout << "Enter the height of rectangle: ";
-					cin >> sideA;
-					cout << "Enter the width of the rectangle: ";
-					cin >> sideB;
-					cout << endl;
-					if (sideA > 0 && sideB > 0)
-					{
-						circumference(sideA, sideB);
-						second();
-						goto g;
-					}
-					else
-						goto j;
-					break;
-				case 3:
-					cout << "\t\t\t\t***TRIANGLE***" << endl;
-				d1:
-					cout << "Enter the first side of the triangle: ";
-					cin >> sidetriangleA;
-					cout << "Enter the second side of the triangle: ";
-					cin >> sidetriangleB;
-					cout << "Enter the third side of the triangle: ";
-					cin >> sidetriangleC;
-					cout << endl;
-					if (sidetriangleA > 0 && sidetriangleB > 0 && sidetriangleC > 0 && sidetriangleC < sidetriangleA + sidetriangleB && sidetriangleA < sidetriangleB + sidetriangleC && sidetriangleB < sidetriangleC + sidetriangleA)
-					{
-						circumference(sidetriangleA, sidetriangleB, sidetriangleC);
-						second();
-						goto g;
-					}
-					else
-						goto d1;
-					break;
-
-				case 4:
-					cout << "\t\t\t\t***Square***" << endl;
-				e1:
-					cout << "Enter the side of square: ";
-					cin >> sidesquare;
-					if (sidesquare > 0)
-					{
-						circumference(sidesquare);
-						second();
-						goto g;
-					}
-					else
-						goto e1;
-					break;
-				case 5:
-					main();
-					break;
-				default:
-					break;
-				}
-				break;
-			}
-			else
-				goto g;
-			break;
-			///////////////////////////////////////////////////////////////////////////////////////////////////////////
-		case 3: // third333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
-			third();
-			cout << "\t\t\tPlease enter 3 numbers to compare.\n\t\t\tYou can write even an integer or decimal number. For example: 123, 12.123, 0,123 \n";
-		x:
-			cout << endl;
-			cout << "Enter the first number: ";
-			cin >> n1;
-			cout << "Enter the second number: ";
-			cin >> n2;
-			cout << "Enter the third number: ";
-			cin >> n3;
-			findlargest(n1, n2, n3);
-			char quit;
-			cout << "Do you want to try again(y/n)? ";
-			if (cin >> quit && quit == 'y') // when user will input 'y' the code will again ask you to input a 3 numbers
-				goto x;						// when it will be 'n' the code will go to the main menu
-			else
-			{
-				system("cls");
-				main();
-			}
-			break;
-
-			/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		case 4: // four4444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444
-			third();
-			cout << "\t\t\tPlease enter 3 numbers to compare.\n\t\t\tYou can write even an integer or decimal number. For example: 123, 12.123, 0,123 \n";
-		qw:
-			cout << endl;
-			cout << "Enter the first number: ";
-			cin >> n1;
-			cout << "Enter the second number: ";
-			cin >> n2;
-			cout << "Enter the third number: ";
-			cin >> n3;
-			findlargest(n1, n2, n3);
-			char quit2;
-			cout << "Do you want to try again(y/n)? "; // when user will input 'y' the code will again ask you to input a 3 numbers
-			if (cin >> quit2 && quit2 == 'y')		   // when it will be 'n' the code will go to the main menu
-				goto qw;
-			else
-			{
-				system("cls");
-				main();
-			}
-			break; // breaking the case 4 of the main menu
-		default:
-			break; // breaking the default
-		}
-	}
-	else
-		goto b;
-	system("pause");
 	return 0;
 }
 
