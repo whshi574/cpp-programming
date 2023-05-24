@@ -1,421 +1,293 @@
 #include <iostream>
 #include <string>
+#include <vector>
+
+
 using namespace std;
 
-int main();
+void TransposeMatrix(vector<vector<int>>& MatrixA, vector<vector<int>>& MatrixB);
 
-void read_display()
+void SumMatrix(vector<vector<int>>& MatrixA, vector<vector<int>>& MatrixB);
+
+void ProductMatrix(vector<vector<int>>& MatrixA, vector<vector<int>>& MatrixB);
+
+void MatrixOperatePage(vector<vector<int>>& MatrixA, vector<vector<int>>& MatrixB);
+
+void ReadMatrixInput(vector<vector<int>>& Matrix, int& MatrixRow, int& MatrixColumns);
+
+void DisplayMatrixInput(vector<vector<int>>& Matrix);
+
+
+void TransposeMatrix(vector<vector<int>>& MatrixA, vector<vector<int>>& MatrixB)
 {
-	system("cls");
-	cout << "\t\tREAD AND DISPLAY\n";
-	cout << "Please input information about 2D array: " << endl;
-	int row_input, col_input;
-	cout << "Rows (max 5): ";
-	cin >> row_input;
-	cout << "Columns (max 5): ";
-	cin >> col_input;
-	int a[5][5];
-	cout << "Now input elements of Matrix: ";
-	if (row_input > 0 && row_input <= 5 && col_input > 0 && col_input <= 5)
-	{
-		for (int row = 0; row < row_input; row++)
-		{
-			for (int col = 0; col < col_input; col++)
-			{
-				cin >> a[row][col];
-			}
-		}
-		cout << "Result: \n";
-		for (int row = 0; row < row_input; row++)
-		{
-			for (int col = 0; col < col_input; col++)
-			{
+	int MatrixARow = MatrixA.size();
+	int MatrixAColumns = MatrixA[0].size();
 
-				cout << a[row][col] << "  ";
-			}
-			cout << endl;
-		}
-		cout << endl;
-		cout << "Do you want to try again? (Yes = 1, No = Any Key)\n";
-		string respond;
-		cout << "Your choice: ";
-		cin >> respond;
-		if (respond == "1")
-		{
-			system("cls");
-			read_display();
-		}
-		else
-		{
-			system("cls");
-			main();
-		}
-	}
-	else
+	int MatrixBRow = MatrixB.size();
+	int MatrixBColumns = MatrixB[0].size();
+
+	//Remeber the transpose matrix should be opposite size
+	vector<vector<int>> MatrixATranspose(MatrixAColumns, vector<int>(MatrixARow));
+
+	vector<vector<int>> MatrixBTranspose(MatrixBColumns, vector<int>(MatrixBRow));
+
+	for (int Row = 0; Row < MatrixARow; Row++) 
 	{
-		system("cls");
-		cout << "Please input valid numbers from 1 to 5 ! " << endl;
-		read_display();
+		for (int Column = 0; Column < MatrixAColumns; Column++) 
+		{
+			MatrixATranspose[Column][Row] = MatrixA[Row][Column];
+		}
 	}
+
+	cout << "The TransposeMatrix of MatrixA is" << endl;
+
+	DisplayMatrixInput(MatrixATranspose);
+
+	for (int MatrixRow = 0; MatrixRow < MatrixBRow; MatrixRow++)
+	{
+		for (int MatrixColumn = 0; MatrixColumn < MatrixBColumns; MatrixColumn++)
+		{
+			MatrixBTranspose[MatrixColumn][MatrixRow] = MatrixB[MatrixRow][MatrixColumn];
+		}
+	}
+
+	cout << "The TransposeMatrix of MatrixB is" << endl;
+
+	DisplayMatrixInput(MatrixBTranspose);
+
 }
 
-void transpose()
+void SumMatrix(vector<vector<int>>& MatrixA, vector<vector<int>>& MatrixB)
 {
-	system("cls");
-	cout << "\t\tTRANSPOSE OF MATRIX\n";
-	int a[5][5], trans[5][5], r, c, i, j;
-	cout << "Please input information about 2D array: " << endl;
-	cout << "Rows (max 5): ";
-	cin >> r;
-	cout << "Columns (max 5): ";
-	cin >> c;
-	// Storing element of matrix entered by user in array
-	if (r > 0 && r <= 5 && c > 0 && c <= 5)
-	{
-		cout << "Enter elements of matrix: " << endl;
-		for (i = 0; i < r; ++i)
-			for (j = 0; j < c; ++j)
-			{
-				cin >> a[i][j];
-			}
-		// Displaying the matrix
-		cout << "Entered Matrix: " << endl;
-		for (i = 0; i < r; ++i)
-			for (j = 0; j < c; ++j)
-			{
-				cout << " " << a[i][j];
-				if (j == c - 1)
-					cout << endl
-						 << endl;
-			}
-		// Finding transpose of matrix
-		for (i = 0; i < r; ++i)
-			for (j = 0; j < c; ++j)
-			{
-				trans[j][i] = a[i][j];
-			}
-		// Displaying the transpose
-		cout << "Transpose of Matrix: " << endl;
-		for (i = 0; i < c; ++i)
-			for (j = 0; j < r; ++j)
-			{
-				cout << " " << trans[i][j];
-				if (j == r - 1)
-					cout << endl
-						 << endl;
-			}
-		cout << endl;
-		cout << "Do you want to try again? (Yes = 1, No = Any Key)\n";
-		string respond;
-		cout << "Your choice: ";
+	//Matrix Check
+	int MatrixARow = MatrixA.size();
+	int MatrixAColumns = MatrixA[0].size();
 
-		cin >> respond;
-		if (respond == "1")
-		{
-			system("cls");
-			transpose();
-		}
-		else
-		{
-			system("cls");
-			main();
-		}
-	}
-	else
+	int MatrixBRow = MatrixB.size();
+	int MatrixBColumns = MatrixB[0].size();
+
+	if ((MatrixARow != MatrixBRow) || (MatrixAColumns != MatrixBColumns))
 	{
-		system("cls");
-		cout << "Please input valid numbers from 1 to 5 ! " << endl;
-		transpose();
+		cout << "Two matrix can not sum, because they have different dimensions" << endl;
+		return;
 	}
+
+	vector<vector<int>> MatrixSum(MatrixARow, vector<int>(MatrixAColumns));
+	cout << "The sum matrix is :" << endl;
+
+	//Matrix Sum
+	for (int MatrixRow = 0; MatrixRow < MatrixARow; MatrixRow++) 
+	{
+		for (int MatrixColumns = 0; MatrixColumns < MatrixAColumns; MatrixColumns++) 
+		{
+			MatrixSum[MatrixRow][MatrixColumns] = MatrixA[MatrixRow][MatrixColumns] + MatrixB[MatrixRow][MatrixColumns];
+			cout << MatrixSum[MatrixRow][MatrixColumns] << " ";
+		}
+		cout << endl;
+	}
+
 }
 
-void sum_matrices()
+void ProductMatrix(vector<vector<int>>& MatrixA, vector<vector<int>>& MatrixB)
 {
-	system("cls");
-	cout << "\t\tSUM TWO MATRICES\n";
-	cout << "\tNOTE: Rows 1 = Rows 2 && Columns 1 = Columns 2\n";
-	cout << "Please input details for the First Matrix: \n";
-	int row_input, col_input;
-	cout << "Rows (max 5): ";
-	cin >> row_input;
-	cout << "Columns (max 5): ";
-	cin >> col_input;
-	int a[5][5];
-	cout << "Now input elements of First Matrix: ";
-	if (row_input > 0 && row_input <= 5 && col_input > 0 && col_input <= 5)
-	{
-		for (int row = 0; row < row_input; row++)
-		{
-			for (int col = 0; col < col_input; col++)
-			{
-				cin >> a[row][col];
-			}
-		}
-		cout << "First Matrix: \n";
-		for (int row = 0; row < row_input; row++)
-		{
-			for (int col = 0; col < col_input; col++)
-			{
-				cout << a[row][col] << "  ";
-			}
-			cout << endl;
-		}
-	}
-	else
-	{
-		system("cls");
-		cout << "Please input valid numbers from 1 to 5 ! " << endl;
-		read_display();
-	}
-	// for the second matrix
-	cout << endl;
-	cout << "Please input details for the Second Matrix: \n";
-	int row_input2, col_input2;
-	cout << "Rows (max 5): ";
-	cin >> row_input2;
-	cout << "Columns (max 5): ";
-	cin >> col_input2;
-	int b[5][5];
-	cout << "Now input elements of Second Matrix: ";
-	if (row_input2 > 0 && row_input2 <= 5 && col_input2 > 0 && col_input2 <= 5)
-	{
-		for (int row = 0; row < row_input2; row++)
-		{
-			for (int col = 0; col < col_input2; col++)
-			{
-				cin >> b[row][col];
-			}
-		}
-		cout << "Second Matrix: \n";
-		for (int row = 0; row < row_input2; row++)
-		{
-			for (int col = 0; col < col_input2; col++)
-			{
+	//Matrix Check
+	
+	int InputIndex;
+	bool bIsGetInput = 0;
 
-				cout << b[row][col] << "  ";
-			}
-			cout << endl;
-		}
-	}
-	else
-	{
-		system("cls");
-		cout << "Please input valid numbers from 1 to 5 ! " << endl;
-		read_display();
-	}
-	// validation for adding matrices
-	int sum[5][5];
-	if (row_input == row_input2 && col_input == col_input2)
-	{
-		// Adding Two matrices
-		for (int row = 0; row < row_input; row++)
-		{
-			for (int col = 0; col < col_input; col++)
-			{
-				sum[row][col] = a[row][col] + b[row][col];
-			}
-		}
-		// Displaying the resultant sum matrix.
-		cout << endl
-			 << "Sum of two matrix is: " << endl;
-		for (int row = 0; row < row_input; row++)
-		{
-			for (int col = 0; col < col_input; col++)
-			{
-				cout << sum[row][col] << "  ";
-			}
-			cout << endl;
-		}
-	}
-	else
-	{
-		cout << endl;
-		cout << "This Matrices cannot be added.";
-	}
-	// asking play again
-	cout << endl;
-	cout << "Do you want to try again? (Yes = 1, No = Any Key)\n";
-	string respond;
-	cout << "Your choice: ";
-	cin >> respond;
-	if (respond == "1")
-	{
-		system("cls");
-		sum_matrices();
-	}
-	else
-	{
-		system("cls");
-		main();
-	}
-}
+	int MatrixARow = MatrixA.size();
+	int MatrixAColumns = MatrixA[0].size();
 
-void product()
-{
-	system("cls");
-	cout << "\t\tMULTIPLY TWO MATRICES\n";
-	cout << "\tNOTE: Rows 1 = Column 2 \n";
-	cout << "Please input details for the First Matrix: \n";
-	int row_input, col_input;
-	cout << "Rows (max 5): ";
-	cin >> row_input;
-	cout << "Columns (max 5): ";
-	cin >> col_input;
-	int a[5][5];
-	cout << "Now input elements of First Matrix: ";
-	if (row_input > 0 && row_input <= 5 && col_input > 0 && col_input <= 5)
-	{
-		for (int row = 0; row < row_input; row++)
-		{
-			for (int col = 0; col < col_input; col++)
-			{
-				cin >> a[row][col];
-			}
-		}
-		cout << "First Matrix: \n";
-		for (int row = 0; row < row_input; row++)
-		{
-			for (int col = 0; col < col_input; col++)
-			{
-				cout << a[row][col] << "  ";
-			}
-			cout << endl;
-		}
-	}
-	else
-	{
-		system("cls");
-		cout << "Please input valid numbers from 1 to 5 ! " << endl;
-		read_display();
-	}
-	// for the second matrix
-	cout << endl;
-	cout << "Please input details for the Second Matrix: \n";
-	int row_input2, col_input2;
-	cout << "Rows (max 5): ";
-	cin >> row_input2;
-	cout << "Columns (max 5): ";
-	cin >> col_input2;
-	int b[5][5];
-	cout << "Now input elements of Second Matrix: ";
-	if (row_input2 > 0 && row_input2 <= 5 && col_input2 > 0 && col_input2 <= 5)
-	{
-		for (int row = 0; row < row_input2; row++)
-		{
-			for (int col = 0; col < col_input2; col++)
-			{
-				cin >> b[row][col];
-			}
-		}
-		cout << "Second Matrix: \n";
-		for (int row = 0; row < row_input2; row++)
-		{
-			for (int col = 0; col < col_input2; col++)
-			{
+	int MatrixBRow = MatrixB.size();
+	int MatrixBColumns = MatrixB[0].size();
 
-				cout << b[row][col] << "  ";
-			}
-			cout << endl;
-		}
-	}
-	else
-	{
-		system("cls");
-		cout << "Please input valid numbers from 1 to 5 ! " << endl;
-		read_display();
-	}
-	// validation for multiplication matrices
-	int multi[5][5];
-	if (row_input == col_input2)
-	{
-		// initializing the matrix of multiplication
-		for (int row = 0; row < row_input; row++)
+	cout << "You want to MatrixA * MatrixB (Enter 1) or MatrixB * MatrixA (Enter 2)" << endl;
+	cin >> InputIndex;
+
+	//Matrix Check
+	while (!bIsGetInput) {
+		switch (InputIndex)
 		{
-			for (int col = 0; col < col_input2; col++)
-			{
-				multi[row][col] = 0;
-			}
-		}
-		for (int row = 0; row < row_input; row++)
-		{
-			for (int col = 0; col < col_input2; col++)
-			{
-				for (int i = 0; i < col_input; i++)
+		case 1:
+			if (MatrixAColumns == MatrixBRow) {
+
+				vector<vector<int>> MatrixSum(MatrixARow, vector<int>(MatrixBColumns));
+
+				for (int i = 0; i < MatrixARow; ++i)
 				{
-					multi[row][col] += a[row][col] * b[row][col];
+					for (int j = 0; j < MatrixBColumns; ++j)
+					{
+						for (int k = 0; k< MatrixAColumns; k++)
+						{
+							MatrixSum[i][j] += MatrixA[i][k] * MatrixB[k][j];
+						}
+					}
 				}
+
+				DisplayMatrixInput(MatrixSum);
 			}
+			else {
+				cout << "Two matrix can not product, because A's colmuns != B's row" << endl;
+				bIsGetInput = 0;
+				return;
+			}
+			bIsGetInput = 1;
+			break;
+
+		case 2:
+			if (MatrixBColumns == MatrixARow) {
+
+				vector<vector<int>> MatrixSum(MatrixBRow, vector<int>(MatrixAColumns));
+
+				for (int i = 0; i < MatrixBRow; ++i)
+				{
+					for (int j = 0; j < MatrixAColumns; ++j)
+					{
+						for (int k = 0; k < MatrixBColumns; k++)
+						{
+							MatrixSum[i][j] += MatrixA[i][k] * MatrixB[k][j];
+						}
+					}
+				}
+
+				DisplayMatrixInput(MatrixSum);
+			}
+			else {
+				cout << "Two matrix can not product, because A's colmuns != B's row" << endl;
+				bIsGetInput = 0;
+				return;
+			}
+			bIsGetInput = 1;
+			break;
+		default:
+			cout << "You enter a wrong choice, please enter again" << endl;
+			bIsGetInput = 0;
+			break;
 		}
-		// displaying multiplication of two matrices
-		cout << endl;
-		cout << "Result of Multiplication: \n";
-		for (int row = 0; row < row_input; row++)
+	}
+
+}
+
+void MatrixOperatePage(vector<vector<int>>& MatrixA, vector<vector<int>>& MatrixB)
+{
+	system("cls");
+	cout << "=====Welcome to the MatrixOperatePage=====" << endl;
+	cout << "Now you have two matrix can be operate" << endl;
+
+	cout << "Matrix A" << endl;
+	DisplayMatrixInput(MatrixA);
+
+	cout << "Matrix B" << endl;
+	DisplayMatrixInput(MatrixB);
+
+	cout << "Please choose what function you want to use" << endl;
+	cout << "[1] The sum of two matrices" << endl;
+	cout << "[2] The transpose of one matrice" << endl;
+	cout << "[3] The product of two matrices" << endl;
+	cout << "Please enter your choice" << endl;
+
+	int InputIndex;
+	bool bIsGetInput = 0;
+
+
+	while (!bIsGetInput)
+	{	
+		cin >> InputIndex;
+
+		switch (InputIndex)
 		{
-			for (int col = 0; col < col_input2; col++)
-			{
-				cout << multi[row][col] << "  ";
-			}
-			cout << endl;
+			case 1:
+				SumMatrix(MatrixA, MatrixB);
+				bIsGetInput = 1;
+				break;
+			case 2:
+				TransposeMatrix(MatrixA, MatrixB);
+				bIsGetInput = 1;
+				break;
+			case 3:
+				ProductMatrix(MatrixA, MatrixB);
+				bIsGetInput = 1;
+				break;
+			default:
+				cout << "You enter a wrong choice, please enter your choice again" << endl;
+				bIsGetInput = 0;
+				break;
 		}
 	}
-	else
+
+}
+
+void ReadMatrixInput(vector<vector<int>>& Matrix, int& MatrixRow, int& MatrixColumns)
+{
+	cout << "Please enter the Matrix 's message" << endl;
+
+	cout << "The number of MatrixRow :" << endl;
+	cin >> MatrixRow;
+	
+	cout << "The number of MatrixColumns :" << endl;
+	cin >> MatrixColumns;
+	
+	//input check
+	if ((MatrixRow <= 0) && (MatrixColumns<= 0))
 	{
-		cout << endl;
-		cout << "This Matrices cannot be multiplied.";
+		cout << "MatrixRow and matrixColumns can not smaller than 0" << endl;
+		ReadMatrixInput(Matrix, MatrixRow, MatrixColumns);
 	}
-	// asking play again
-	cout << endl;
-	cout << "Do you want to try again? (Yes = 1, No = Any Key)\n";
-	string respond;
-	cout << "Your choice: ";
-	cin >> respond;
-	if (respond == "1")
-	{
-		system("cls");
-		sum_matrices();
+
+	//Resize the matrix row value
+	Matrix.resize(MatrixRow);
+
+	//Resize the matrix row' s column value
+	for (int ResizeRow = 0; ResizeRow < MatrixRow; ResizeRow++) {
+		Matrix[ResizeRow].resize(MatrixColumns);
 	}
-	else
+
+	//Get matrix value
+	for (int row = 0;row < MatrixRow;row++)
 	{
-		system("cls");
-		main();
+		for (int columns = 0; columns< MatrixColumns; columns++)
+		{
+			cout << "The Matrix 's " << row<<" row "<< columns<<" columns value is "<< endl;
+			cin >> Matrix[row][columns];
+		}
 	}
 }
 
-void main_menu_view()
+void DisplayMatrixInput(vector<vector<int>>& Matrix) 
 {
-	system("color 3F");
-	cout << "\t\t\t===============================\n";
-	cout << "\t\t\t\tM A I N  M E N U\n";
-	cout << "\t\t\t===============================\n";
-	cout << "\t\t\t[1] Read and Display Matrix\n";
-	cout << "\t\t\t[2] Transpose\n";
-	cout << "\t\t\t[3] Sum of two Matrices\n";
-	cout << "\t\t\t[4] Product of two Matrices\n\n";
+	int MatrixRow = Matrix.size();
+	int MatrixColumns = Matrix[0].size();
+
+	for (int row = 0; row < MatrixRow; row++)
+	{
+		for (int column = 0; column < MatrixColumns; column++)
+		{
+			cout << Matrix[row][column]<<" ";
+		}
+		cout << endl;
+	}
 }
-int main22()
+
+int main()
 {
-	main_menu_view();
-	cout << "\t\t\tYOUR CHOICE: ";
-	string user_choice;
-	cin >> user_choice;
-	// validating the user input
-	if (user_choice == "1" || user_choice == "2" || user_choice == "3" || user_choice == "4")
-	{
-		if (user_choice == "1")
-			read_display();
-		else if (user_choice == "2")
-			transpose();
-		else if (user_choice == "3")
-			sum_matrices();
-		else if (user_choice == "4")
-			product();
-	}
-	else
-	{
-		system("cls"); // function for the clearing the screen of console
-		cout << "\t\tYou have inputted wrong number, please try again!\n";
-		main();
-	}
+	int MatrixARow = 10;
+	int MatrixAColumns = 10;
+
+	int MatrixBRow = 10;
+	int MatrixBColumns = 10;
+
+	vector<vector<int>> MatrixA(MatrixARow, vector<int>(MatrixAColumns));
+	vector<vector<int>> MatrixB(MatrixBRow, vector<int>(MatrixBColumns));
+
+	cout << "The Matrix A" << endl;
+	ReadMatrixInput(MatrixA, MatrixARow, MatrixAColumns);
+	DisplayMatrixInput(MatrixA);
+	
+	cout << "The Matrix B" << endl;
+	ReadMatrixInput(MatrixB, MatrixBRow, MatrixBColumns);
+	DisplayMatrixInput(MatrixB);
+	
+	MatrixOperatePage(MatrixA, MatrixB);
 
 	return 0;
 }
