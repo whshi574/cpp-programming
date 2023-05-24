@@ -29,4 +29,10 @@
 
     If the input is 2.1, The first bIsGetInput will be false, means success, but .1 has already exist in the stream buffer.
 
+    **Vector**
+
+    We can use vector<int>to store the matrix of rows, and vector<vector<int>> to store the matrix of columns.
+
+    
+
 3. In a small company there are five salesman. Each salesman is supposed to sell three products. Write a program using 2D array to print the total sales by each salesman and total sales of each item.
